@@ -5,7 +5,7 @@
   <title>Hello World</title>
   <style>
   div#field{
-    width:600px; height:600px; border:1px solid black; float:left; margin:0.5em; padding:0.5em;
+     border:1px solid black; float:left; margin:0.5em; padding:0.5em;
   }
   div.ticket{
     width: 100px;
@@ -17,11 +17,16 @@
 <body>
 
 <div id="field">
+  <div id="top">かならず</div>
+  <div id="bottom">できれば</div>
+  <div id="right">いますぐ</div>
+  <div id="left">そのうち</div>
 </div>
 
 <div id="bs-console"></div>
 
 <script src="lib/biwascheme.js">
+;; load
 (for-each (lambda (pair)
             (js-load (string-append "js/" (car pair) ".js")
                      (cdr pair)))
@@ -32,6 +37,24 @@
             ("controls" . "Autocompleter")
             ("slider" . "Control")
             ("sound" . "Sound")))
+
+;; consts
+
+(define (set-position! elem x y)
+  (set-style! elem "position" "absolute") 
+  (set-style! elem "left" x)
+  (set-style! elem "top" y))
+
+(define *width* 600)
+(define *height* 600)
+
+(set-style! ($ "field") "width" *width*)
+(set-style! ($ "field") "height" *height*)
+(set-position! ($ "top") (/ *width* 2) 0)
+(set-position! ($ "bottom") (/ *width* 2) *height*)
+(set-position! ($ "right") 0 (/ *height* 2))
+(set-position! ($ "left") *width* (/ *height* 2))
+
 
 (display "hello, world!")
 
