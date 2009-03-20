@@ -40,16 +40,19 @@
 
 ;; consts
 
+(define (px n)
+  (string-append (number->string n) "px"))
+
 (define (set-position! elem x y)
   (set-style! elem "position" "absolute") 
-  (set-style! elem "left" x)
-  (set-style! elem "top" y))
+  (set-style! elem "left" (px x))
+  (set-style! elem "top" (px y)))
 
 (define *width* 600)
 (define *height* 600)
 
-(set-style! ($ "field") "width" *width*)
-(set-style! ($ "field") "height" *height*)
+(set-style! ($ "field") "width" (px *width*))
+(set-style! ($ "field") "height" (px *height*))
 (set-position! ($ "top") (/ *width* 2) 0)
 (set-position! ($ "bottom") (/ *width* 2) *height*)
 (set-position! ($ "right") 0 (/ *height* 2))
