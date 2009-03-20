@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <title>Hello World</title>
+  <style>
+  div#field{
+    width:600px; height:600px; border:1px solid black; float:left; margin:0.5em; padding:0.5em;
+  }
+  div.ticket{
+    width: 100px;
+    border: 1px solid black;
+    padding: 0.3em;
+  }
+  </style>
+</head>
+<body>
+
+<div id="field">
+</div>
+
+<div id="bs-console"></div>
+
+<script src="lib/biwascheme.js">
+(for-each (lambda (pair)
+            (js-load (string-append "js/" (car pair) ".js")
+                     (cdr pair)))
+          '(("scriptaculous" . "Scriptaculous")
+            ("builder" . "Builder")
+            ("effects" . "Effect")
+            ("dragdrop" . "Draggable")
+            ("controls" . "Autocompleter")
+            ("slider" . "Control")
+            ("sound" . "Sound")))
+
+(display "hello, world!")
+
+(define (ticket-new! content)
+  (let1 ticket-div (element-new `("div.ticket" ,content))
+    (element-insert! ($ "field") ticket-div)
+    ticket-div))
+
+(for-each (lambda (elem) (js-new "Draggable" elem))
+          (list (ticket-new! "foo")
+                (ticket-new! "bar")))
+
+</script>
+
+</body>
+</html>
