@@ -7,6 +7,14 @@
   div#field{
      border:1px solid black; float:left; margin:0.5em; padding:0.5em;
   }
+  div#hand{
+     width: 300px; height: 300px;
+     border:1px solid black; margin:0.5em; padding:0.5em;
+     float: left;
+  }
+  div#hand_title{
+     border-bottom: 1px solid black;
+  }
   div.ticket{
     width: 100px;
     border: 1px solid black;
@@ -21,6 +29,11 @@
   <div id="bottom">できれば</div>
   <div id="right">いますぐ</div>
   <div id="left">そのうち</div>
+</div>
+
+<div id="hand">
+  <div id="hand_title"></div>
+  <div id="hand_desc"></div>
 </div>
 
 <div id="bs-console"></div>
@@ -48,6 +61,12 @@
   (set-style! elem "left" (px x))
   (set-style! elem "top" (px y)))
 
+(define (get-position elem)
+  (define (remove-px str)
+    (string->number (car (regexp-exec (string->regexp "(\\\\d+)") str))))
+  (values (remove-px (get-style elem "left"))
+          (remove-px (get-style elem "top"))))
+
 (define *width* 600)
 (define *height* 600)
 
@@ -58,8 +77,21 @@
 (set-position! ($ "right") 0 (/ *height* 2))
 (set-position! ($ "left") *width* (/ *height* 2))
 
+(define (show-ticket ticket-div)
+  (set-content! ($ "hand_title") (get-content ticket-div))
+  (call-with-values (lambda () (get-position ticket-div))
+                    (lambda (x y) (print x y)))
+  (set-content! ($ "hand_desc")
+                (string-append "(" 
+                               (get-style ticket-div "left")
+                               ","
+                               (get-style ticket-div "top")
+                               ")")))
+
 (define (ticket-new! name x y)
   (let1 ticket-div (element-new `("div.ticket" ,(symbol->string name)))
+    (add-handler! ticket-div "click"
+                  (lambda (ev) (show-ticket (js-ref ev "target"))))
     (element-insert! ($ "field") ticket-div)
     (js-new "Draggable" ticket-div)
     (set-position! ticket-div x y)
