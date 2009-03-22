@@ -77,9 +77,13 @@
 (set-position! ($ "right")  *width* (/ *height* 2))
 (set-position! ($ "left")   0       (/ *height* 2))
 
+(define show-error print)
+
 (define (ticket-move id x y)
-  (print id " " x " " y)
-  (print (http-post "tickets/move/" `(("id" . ,id) ("x" . ,x) ("y" . ,y)))))
+  (let1 result (http-post "tickets/move/"
+                          `(("id" . ,id) ("x" . ,x) ("y" . ,y)))
+    (when (not (string=? result "#t"))
+      (show-error "error: failed to save ticket position"))))
 
 (define (show-ticket ticket-div)
   (set-content! ($ "hand_title") (get-content ticket-div))
