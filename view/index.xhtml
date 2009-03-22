@@ -51,6 +51,8 @@
             ("slider" . "Control")
             ("sound" . "Sound")))
 
+(load "scm/ticket.scm")
+
 ;; consts
 
 (define (px n)
@@ -78,40 +80,6 @@
 (set-position! ($ "left")   0       (/ *height* 2))
 
 (define show-error print)
-
-(define (ticket-move id x y)
-  (let1 result (http-post "tickets/move/"
-                          `(("id" . ,id) ("x" . ,x) ("y" . ,y)))
-    (when (not (string=? result "#t"))
-      (show-error "error: failed to save ticket position"))))
-
-(define (ticket-moved ticket-div)
-  (call-with-values 
-    (lambda () (get-position ticket-div))
-    (lambda (x y) 
-      (ticket-move (js-ref ticket-div "ticket-id") x y))))
-
-(define (show-ticket ticket-div)
-  (set-content! ($ "hand_title") (get-content ticket-div))
-  (set-content! ($ "hand_desc")
-                (string-append "(" 
-                               (get-style ticket-div "left")
-                               ","
-                               (get-style ticket-div "top")
-                               ")")))
-
-(define (ticket-new! id name x y)
-  (let1 ticket-div (element-new `("div.ticket" ,(symbol->string name)))
-    (js-set! ticket-div "ticket-id" id)
-    (add-handler! ticket-div "click"
-                  (lambda (ev) (show-ticket (js-ref ev "target"))))
-    (element-insert! ($ "field") ticket-div)
-    (js-new "Draggable" ticket-div
-            (js-obj "onEnd" 
-                    (js-closure 
-                      (lambda (drg) (ticket-moved (js-ref drg "element"))))))
-    (set-position! ticket-div x y)
-    ticket-div))
 
 (for-each (lambda (vals) (apply ticket-new! vals))
           (read-from-string (http-request "tickets/list")))
