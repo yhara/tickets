@@ -72,10 +72,10 @@
 
 (set-style! ($ "field") "width" (px *width*))
 (set-style! ($ "field") "height" (px *height*))
-(set-position! ($ "top") (/ *width* 2) 0)
+(set-position! ($ "top")    (/ *width* 2) 0)
 (set-position! ($ "bottom") (/ *width* 2) *height*)
-(set-position! ($ "right") 0 (/ *height* 2))
-(set-position! ($ "left") *width* (/ *height* 2))
+(set-position! ($ "right")  *width* (/ *height* 2))
+(set-position! ($ "left")   0       (/ *height* 2))
 
 (define (ticket-move id x y)
   (print id " " x " " y)
