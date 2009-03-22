@@ -77,10 +77,15 @@
 (set-position! ($ "right") 0 (/ *height* 2))
 (set-position! ($ "left") *width* (/ *height* 2))
 
+(define (ticket-move id x y)
+  (print id " " x " " y)
+  (print (http-post "tickets/move/" `(("id" . ,id) ("x" . ,x) ("y" . ,y)))))
+
 (define (show-ticket ticket-div)
   (set-content! ($ "hand_title") (get-content ticket-div))
-  (call-with-values (lambda () (get-position ticket-div))
-                    (lambda (x y) (print x y)))
+  (call-with-values 
+    (lambda () (get-position ticket-div))
+    (lambda (x y) (ticket-move (js-ref ticket-div "ticket-id") x y)))
   (set-content! ($ "hand_desc")
                 (string-append "(" 
                                (get-style ticket-div "left")
@@ -88,8 +93,9 @@
                                (get-style ticket-div "top")
                                ")")))
 
-(define (ticket-new! name x y)
+(define (ticket-new! id name x y)
   (let1 ticket-div (element-new `("div.ticket" ,(symbol->string name)))
+    (js-set! ticket-div "ticket-id" id)
     (add-handler! ticket-div "click"
                   (lambda (ev) (show-ticket (js-ref ev "target"))))
     (element-insert! ($ "field") ticket-div)

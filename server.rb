@@ -17,9 +17,21 @@ class TicktesController < Ramaze::Controller
 
     '(' +
     Ticket.all.map{|ticket|
-      "(#{ticket.title} #{ticket.importance} #{ticket.emergency})"
+      "(#{ticket.id} #{ticket.title} #{ticket.emergency} #{ticket.importance})"
     }.join(' ') +
     ')'
+  end
+
+  def move
+    #raise "must be via POST" unless request.post?
+
+    ticket = Ticket.find(:id => request["id"])
+    Ramaze::Log.debug request.inspect
+    raise "ticket not found" unless ticket
+
+    ticket.update(:emergency => request["x"],
+                  :importance => request["y"])
+    "#t"
   end
 end
 
