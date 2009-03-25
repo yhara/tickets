@@ -41,6 +41,9 @@
 (set-position! ($ "bottom") (/ *width* 2) *height*)
 (set-position! ($ "right")  *width* (/ *height* 2))
 (set-position! ($ "left")   0       (/ *height* 2))
+(set-position! ($ "origin") (/ *width* 2) (/ *height* 2))
+
+(add-handler! ($ "origin") "click" ticket-create)
 
 (define show-error print)
 

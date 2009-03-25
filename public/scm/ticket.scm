@@ -2,6 +2,12 @@
 ;; ticket.scm
 ;;
 
+(define (ticket-create)
+  (let1 result (read-from-string (http-request "tickets/create"))
+    (if (eq? (car result) 'id)
+      (ticket-new! (cdr result) "" (/ *width* 2) (/ *height* 2))
+      (show-error "error: failed to create new ticket"))))
+
 (define (ticket-move id x y)
   (let1 result (http-post "tickets/move/"
                           `(("id" . ,id) ("x" . ,x) ("y" . ,y)))
