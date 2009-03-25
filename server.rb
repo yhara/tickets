@@ -11,6 +11,13 @@ class TicktesController < Ramaze::Controller
   map '/tickets'
   deny_layout :all
 
+  def create
+    ticket = Ticket.new
+    ticket.save
+
+    "(id . #{ticket.id})"
+  end
+
   def list
     #Ticket.new(:title => "foo", :importance => 0, :emergency => 0).save
     #Ramaze::Log.debug Ticket.new(:title => "bar").save
