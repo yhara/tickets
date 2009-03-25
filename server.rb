@@ -24,7 +24,7 @@ class TicktesController < Ramaze::Controller
 
     '(' +
     Ticket.all.map{|ticket|
-      "(#{ticket.id} #{ticket.title} #{ticket.emergency} #{ticket.importance})"
+      "(#{ticket.id} #{ticket.title.inspect} #{ticket.emergency} #{ticket.importance})"
     }.join(' ') +
     ')'
   end

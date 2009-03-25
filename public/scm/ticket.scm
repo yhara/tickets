@@ -24,7 +24,7 @@
                                ")")))
 
 (define (ticket-new! id name x y)
-  (let1 ticket-div (element-new `("div.ticket" ,(symbol->string name)))
+  (let1 ticket-div (element-new `("div.ticket" ,name))
     (js-set! ticket-div "ticket-id" id)
     (add-handler! ticket-div "click"
                   (lambda (ev) (show-ticket (js-ref ev "target"))))
