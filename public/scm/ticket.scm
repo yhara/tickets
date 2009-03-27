@@ -20,7 +20,9 @@
     (lambda (x y) 
       (ticket-move (js-ref ticket-div "ticket-id") x y))))
 
+(define *current-ticket* #f)
 (define (show-ticket ticket-div)
+  (set! *current-ticket* ticket-div)
   (set-content! ($ "hand_title") (get-content ticket-div))
   (set-content! ($ "hand_desc")
                 (string-append "(" 
@@ -42,6 +44,17 @@
     (set-position! ticket-div x y)
     ticket-div))
 
+; rename ticket and submit to server
+(define (ticket-rename new-title)
+  (element-update! ($ "hand_title") new-title)
+  (element-update! *current-ticket* new-title)
+  (let* ((id (js-ref *current-ticket* "ticket-id"))
+         (result (http-post "tickets/rename"
+                            `(("id" . ,id) ("title" . ,new-title)))))
+    (when (not (string=? result "#t"))
+      (show-error "error: failed to save new ticket title"))))
+
+; show rename form and call ticket-rename when submitted
 (define (on-ticket-rename)
   (define (rename-form old)
     (string-append "<input type='text' value='" old "' id='rename_text'>"))
@@ -51,6 +64,5 @@
       (element-update! ($ "hand_title") 
                        (rename-form (get-content ($ "hand_title"))))
       (wait-for ok-button "click")
-      (element-update! ($ "hand_title")
-                       (get-content ($ "rename_text")))
+      (ticket-rename (get-content ($ "rename_text"))
       (element-hide! ok-button))))

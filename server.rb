@@ -31,7 +31,6 @@ class TicktesController < Ramaze::Controller
 
   def move
     raise "must be via POST" unless request.post?
-
     ticket = Ticket.find(:id => request["id"])
     raise "ticket not found" unless ticket
 
@@ -40,6 +39,14 @@ class TicktesController < Ramaze::Controller
     "#t"
   end
 
+  def rename
+    raise "must be via POST" unless request.post?
+    ticket = Ticket.find(:id => request["id"])
+    raise "ticket not found" unless ticket
+
+    ticket.update(:title => request["title"])
+    "#t"
+  end
 end
 
 Ramaze.start
