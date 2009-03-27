@@ -12,7 +12,7 @@
      border:1px solid black; margin:0.5em; padding:0.5em;
      float: left;
   }
-  div#hand_title{
+  div#hand_header{
      border-bottom: 1px solid black;
   }
   div.ticket{
@@ -33,7 +33,10 @@
 </div>
 
 <div id="hand">
-  <div id="hand_title"></div>
+  <div id="hand_header">
+    <span id="hand_title"></span>
+    <input type="button" id="hand_title_submit" value="OK" style="display:none;">
+  </div>
   <div id="hand_desc"></div>
 </div>
 

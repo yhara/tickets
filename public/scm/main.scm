@@ -45,6 +45,8 @@
 
 (add-handler! ($ "origin") "click" ticket-create)
 
+(add-handler! ($ "hand_title") "click" on-ticket-rename)
+
 (define show-error print)
 
 (for-each (lambda (vals) (apply ticket-new! vals))
