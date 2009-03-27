@@ -20,10 +20,15 @@
     (lambda (x y) 
       (ticket-move (js-ref ticket-div "ticket-id") x y))))
 
+; the ticket-div currently shown
 (define *current-ticket* #f)
+
+; show infomation of a ticket
 (define (show-ticket ticket-div)
   (set! *current-ticket* ticket-div)
-  (set-content! ($ "hand_title") (get-content ticket-div))
+  (let1 title (get-content ticket-div)
+    (set-content! ($ "hand_title") 
+                  (if (string=? title "") "(no title)" title)))
   (set-content! ($ "hand_desc")
                 (string-append "(" 
                                (get-style ticket-div "left")
