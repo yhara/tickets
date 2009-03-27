@@ -30,16 +30,16 @@ class TicktesController < Ramaze::Controller
   end
 
   def move
-    #raise "must be via POST" unless request.post?
+    raise "must be via POST" unless request.post?
 
     ticket = Ticket.find(:id => request["id"])
-    Ramaze::Log.debug request.inspect
     raise "ticket not found" unless ticket
 
     ticket.update(:emergency => request["x"],
                   :importance => request["y"])
     "#t"
   end
+
 end
 
 Ramaze.start
