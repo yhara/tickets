@@ -19,11 +19,10 @@ class TicktesController < Ramaze::Controller
   end
 
   def list
-    #Ticket.new(:title => "foo", :importance => 0, :emergency => 0).save
-    #Ramaze::Log.debug Ticket.new(:title => "bar").save
+    tickets = Ticket.filter(:deleted => false).all
 
     '(' +
-    Ticket.all.map{|ticket|
+    tickets.map{|ticket|
       "(#{ticket.id} #{ticket.title.inspect} #{ticket.emergency} #{ticket.importance})"
     }.join(' ') +
     ')'
