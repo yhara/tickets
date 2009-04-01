@@ -46,6 +46,7 @@
 (add-handler! ($ "origin") "click" ticket-create)
 
 (add-handler! ($ "hand_title") "click" on-ticket-rename)
+(add-handler! ($ "hand_delete") "click" on-ticket-delete)
 
 (define show-error print)
 

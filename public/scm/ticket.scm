@@ -69,5 +69,26 @@
       (element-update! ($ "hand_title") 
                        (rename-form (get-content ($ "hand_title"))))
       (wait-for ok-button "click")
-      (ticket-rename (get-content ($ "rename_text"))
+      (ticket-rename (get-content ($ "rename_text")))
       (element-hide! ok-button))))
+
+; send server to delete info and clear the hand
+(define (ticket-delete id)
+  (let1 result (http-post "tickets/delete"
+                          `(("id" . ,id)))
+    (if (string=? result "#t")
+      (begin
+        (element-remove! *current-ticket*)
+        (set! *current-ticket* #f)
+        (element-clear! ($ "hand_title"))
+        (element-clear! ($ "hand_desc")))
+      (show-error "error: failed to save ticket position"))))
+
+; ask really delete the ticket
+(define (on-ticket-delete)
+  (when *current-ticket*
+    (let1 message (string-append "really delete '"
+                                 (get-content *current-ticket*)
+                                 "' ?")
+      (when (confirm message)
+        (ticket-delete (js-ref *current-ticket* "ticket-id"))))))

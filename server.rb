@@ -46,6 +46,15 @@ class TicktesController < Ramaze::Controller
     ticket.update(:title => request["title"])
     "#t"
   end
+
+  def delete
+    raise "must be via POST" unless request.post?
+    ticket = Ticket.find(:id => request["id"])
+    raise "ticket not found" unless ticket
+
+    ticket.update(:deleted => true)
+    "#t"
+  end
 end
 
 Ramaze.start
