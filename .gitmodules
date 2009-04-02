@@ -1,0 +1,3 @@
+[submodule "public/biwascheme"]
+	path = public/biwascheme
+	url = git://github.com/yhara/biwascheme.git
