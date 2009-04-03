@@ -1,7 +1,27 @@
+= before 1.x.x
+
+= before 0.4.0
+
+- change orm to datamapper(or ActiveRecord?)
+- implement tags 
+  - different color
+  - show certain tag only
+  - tag 'Done' means fixed tags
+
+= before 0.3.0
+
+- memorize date when a ticket is created
+- memorize date when a ticket is deleted
+- show deleted tickets
+
+= before 0.2.0
+
+- automatically move tickets
+
 = before 0.1.0
 
 Make it installable :-(
 
-* write gemspec
-  * dependency (ramaze)
-* automatic migration in start.rb
+- write gemspec
+  - dependency (ramaze)
++ automatic migration in start.rb
