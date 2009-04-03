@@ -15,4 +15,4 @@ class Ticket < Sequel::Model(:tickets)
 #  end
 end
 
-#Ticket.create_table! unless Ticket.table_exists?
+Sequel::Migrator.apply(DB, "./db/migrate/") unless Ticket.table_exists?
