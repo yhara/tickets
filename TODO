@@ -1,5 +1,9 @@
 = before 1.x.x
 
+- write server tests
+- write client tests
+- refactor scheme code (use hashtable as object)
+
 = before 0.4.0
 
 - change orm to datamapper(or ActiveRecord?)
