@@ -1,0 +1,7 @@
+= before 0.1.0
+
+Make it installable :-(
+
+* write gemspec
+  * dependency (ramaze)
+* automatic migration in start.rb
