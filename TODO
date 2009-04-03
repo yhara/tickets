@@ -2,6 +2,30 @@
 
 - write server tests
 - write client tests
+  - when origin is clicked
+    - new ticket appears on the filed
+    - request: /tickets/create
+  - when a ticket is clicked
+    - ticket info is shown in the hand
+  - when a ticket is moved
+    - request: /tickets/move? id, x, y
+  - when ticket title is cliced
+    - show ticket form
+    - when ok is clicked
+      - show new title in the hand
+      - show new title in the field
+      - request: /tickets/rename? id, new
+  - when delete button is clicked
+    - ask really delete the ticket
+    - when Y is clicked
+      - remove the ticket from the field
+      - clear the hand
+      - request: /tickets/delete? id
+    - when N is clicked
+      - do not remove the ticket from the field
+      - keep the hand
+      - no request
+
 - refactor scheme code (use hashtable as object)
 
 = before 0.4.0
