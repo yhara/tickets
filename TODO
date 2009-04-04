@@ -53,3 +53,6 @@ Make it installable :-(
 - write gemspec
   - dependency (ramaze)
 + automatic migration in start.rb
+- save database on ~/.tickets.db
+- move executable to bin/
+- command line option (port, db)
