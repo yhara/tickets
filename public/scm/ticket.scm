@@ -36,11 +36,15 @@
                                (get-style ticket-div "top")
                                ")")))
 
+(define (on-ticket-click ticket-div)
+  (element-hide! ($ "hand_title_submit"))
+  (show-ticket ticket-div))
+
 (define (ticket-new! id name x y)
   (let1 ticket-div (element-new `("div.ticket" ,name))
     (js-set! ticket-div "ticket-id" id)
     (add-handler! ticket-div "click"
-                  (lambda (ev) (show-ticket (js-ref ev "target"))))
+                  (lambda (ev) (on-ticket-click (js-ref ev "target"))))
     (element-insert! ($ "field") ticket-div)
     (js-new "Draggable" ticket-div
             (js-obj "onEnd" 
