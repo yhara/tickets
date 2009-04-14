@@ -1,3 +1,8 @@
+#
 # ~/.tickets.conf example
- 
-DB_PATH = "~/data/tickets.db"
+# 
+module Tickets
+  module Config
+    DB_PATH = File.expand_path("~/data/.tickets.db")
+  end
+end

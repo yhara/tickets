@@ -3,11 +3,15 @@ require 'rubygems'
 require 'ramaze'
 
 # load config
-CONF_PATH = File.expand_path("~/.tickets.conf")
-if File.exist?(CONF_PATH)
-  load CONF_PATH
+conf_path = File.expand_path("~/.tickets.conf")
+load conf_path if File.exist?(conf_path)
+
+# update config
+module Tickets
+  module Config
+    DB_PATH = File.expand_path("~/.tickets.db") unless defined?(DB_PATH)
+  end
 end
-DB_PATH = File.expand_path("~/.tickets.db") unless defined?(DB_PATH)
 
 # connect database
 $LOAD_PATH.unshift(File.expand_path("../", File.dirname(__FILE__)))

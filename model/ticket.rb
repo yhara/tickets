@@ -2,7 +2,7 @@ require 'sequel'
 require 'sequel/extensions/migration'
 Sequel::Model.plugin(:schema) # for table_exists?
 
-$db = Sequel.sqlite(DB_PATH)
+$db = Sequel.sqlite(Tickets::Config::DB_PATH)
 
 class Ticket < Sequel::Model(:tickets)
 
