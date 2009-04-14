@@ -4,5 +4,6 @@
 module Tickets
   module Config
     DB_PATH = File.expand_path("~/data/.tickets.db")
+    PORT = 7000
   end
 end
