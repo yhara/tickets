@@ -1,7 +1,19 @@
+#!/usr/bin/env ruby
 require 'rubygems'
 require 'ramaze'
+
+# load config
+CONF_PATH = File.expand_path("~/.tickets.conf")
+if File.exist?(CONF_PATH)
+  load CONF_PATH
+end
+DB_PATH = File.expand_path("~/.tickets.db") unless defined?(DB_PATH)
+
+# connect database
+$LOAD_PATH.unshift(File.expand_path("../", File.dirname(__FILE__)))
 require 'model/ticket'
 
+# controllers
 class MainController < Ramaze::Controller
   def index
   end

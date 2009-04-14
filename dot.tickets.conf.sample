@@ -1,0 +1,3 @@
+# ~/.tickets.conf example
+ 
+DB_PATH = "~/data/tickets.db"

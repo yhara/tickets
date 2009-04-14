@@ -1,6 +1,8 @@
 require 'sequel'
+require 'sequel/extensions/migration'
+Sequel::Model.plugin(:schema) # for table_exists?
 
-DB = Sequel.sqlite("db/tickets.db")
+$db = Sequel.sqlite(DB_PATH)
 
 class Ticket < Sequel::Model(:tickets)
 
@@ -15,4 +17,8 @@ class Ticket < Sequel::Model(:tickets)
 #  end
 end
 
-Sequel::Migrator.apply(DB, "./db/migrate/") unless Ticket.table_exists?
+unless Ticket.table_exists?
+  migration_dir = File.expand_path("../db/migrate/",
+                                   File.dirname(__FILE__))
+  Sequel::Migrator.apply($db, migration_dir)
+end
