@@ -45,14 +45,15 @@
 = before 0.2.0
 
 - automatically move tickets
+- add Tickets::VERSION?
 
 = before 0.1.0
 
 Make it installable :-(
 
-- write gemspec
-  - dependency (ramaze)
+- write gemspec (with rtask)
+  + dependency (ramaze)
 + automatic migration in start.rb
-- save database on ~/.tickets.db
-- move executable to bin/
-- command line option (port, db)
++ save database on ~/.tickets.db
++ move executable to bin/
++ command line option (port, db)
