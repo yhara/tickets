@@ -32,8 +32,16 @@
   (values (remove-px (get-style elem "left"))
           (remove-px (get-style elem "top"))))
 
-(define *width* 600)
-(define *height* 600)
+(define *width* #f)
+(define *height* #f)
+
+; load board size
+(let1 result (read-from-string (http-request "config/board_size"))
+  (if (eq? (car result) 'xy)
+    (begin
+      (set! *width*  (cadr result))
+      (set! *height* (cddr result)))
+    (show-error "error: failed to load board size")))
 
 (set-style! ($ "field") "width" (px *width*))
 (set-style! ($ "field") "height" (px *height*))
@@ -49,6 +57,7 @@
 (add-handler! ($ "hand_delete") "click" on-ticket-delete)
 
 (define show-error print)
+
 
 (for-each (lambda (vals) (apply ticket-new! vals))
           (read-from-string (http-request "tickets/list")))

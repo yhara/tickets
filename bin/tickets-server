@@ -12,6 +12,12 @@ module Tickets
   module Config
     DB_PATH = File.expand_path("~/.tickets.db") unless defined?(DB_PATH)
     PORT = 7002 unless defined?(PORT)
+
+    SHAKE_INTERVAL = 24 # hours
+    SHAKE_DISTANCE = 8  # pixels
+
+    BOARD_WIDTH  = 600 # pixels
+    BOARD_HEIGHT = 600 # pixels
   end
 end
 
@@ -22,6 +28,16 @@ require 'model/ticket'
 # controllers
 class MainController < Ramaze::Controller
   def index
+    Ticket.shake! if Ticket.needs_shaking?
+  end
+end
+
+class ConfigController < Ramaze::Controller
+  map '/config'
+  deny_layout :all
+
+  def board_size
+    "(xy . (#{Tickets::Config::BOARD_WIDTH} . #{Tickets::Config::BOARD_HEIGHT}))"
   end
 end
 

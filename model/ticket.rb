@@ -5,16 +5,24 @@ Sequel::Model.plugin(:schema) # for table_exists?
 $db = Sequel.sqlite(Tickets::Config::DB_PATH)
 
 class Ticket < Sequel::Model(:tickets)
+  @@last_shook = Time.now
 
-#  def self.add(title, content)
-#    create :title => title, :content => content,
-#      :created => Time.now, :updated => Time.now
-#  end
-#
-#  def update(title = title, content = content)
-#    self.title, self.content, self.updated = title, content, Time.now
-#    save
-#  end
+  def self.needs_shaking?
+    (Time.now - @@last_shook) > 5 #Tickets::Config::SHAKE_INTERVAL*60*60
+  end
+
+  def self.shake!
+    Ticket.each do |ticket|
+      pos = ticket.emergency
+      center = Tickets::Config::BOARD_HEIGHT / 2
+      dir = (ticket.importance < center ? 1 : -1)
+      newpos = pos + Tickets::Config::SHAKE_DISTANCE * dir
+
+      ticket.update(:emergency => newpos)
+      ticket.save
+    end
+    @@last_shook = Time.now
+  end
 end
 
 unless Ticket.table_exists?
