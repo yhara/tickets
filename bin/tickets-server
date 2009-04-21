@@ -32,7 +32,7 @@ class MainController < Ramaze::Controller
   end
 
   def track
-    @tickets = Ticket.all(:deleted => true)
+    @tickets = Ticket.filter(:deleted => true).reverse_order(:id)
   end
 end
 
