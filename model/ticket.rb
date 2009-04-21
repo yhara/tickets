@@ -17,13 +17,14 @@ class Ticket < Sequel::Model(:tickets)
       center = Tickets::Config::BOARD_HEIGHT / 2
       dir = (ticket.importance < center ? 1 : -1)
       newpos = pos + Tickets::Config::SHAKE_DISTANCE * dir
-      newpos %= Tickets::Config::BOARD_WIDTH
+      if newpos > Tickets::Config::BOARD_WIDTH
+        newpos = Tickets::Config::BOARD_WIDTH
+      end
 
       ticket.update(:emergency => newpos)
       if newpos < 0
-        ticket.update(:deleted => true)
+        ticket.update(:deleted => true, :timeouted => true)
       end
-      ticket.save
     end
     @@last_shook = Time.now
   end
