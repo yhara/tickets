@@ -40,18 +40,19 @@
 
 - memorize date when a ticket is created
 - memorize date when a ticket is deleted
-- show deleted tickets
 
 = before 0.2.0
 
-- automatically move tickets
 - add Tickets::VERSION?
 
 = before 0.1.0
 
-Make it installable :-(
+- show deleted tickets (including timeouted ones)
 
-- write gemspec (with rtask)
++ automatically move tickets
+
++ Make it installable :-)
++ write gemspec (with rtask)
   + dependency (ramaze)
 + automatic migration in start.rb
 + save database on ~/.tickets.db

@@ -9,7 +9,9 @@ Two-dimentional TODO manager.
 
 == Execute
 
-  tickets-server -h
+  tickets-server
+
+then open http://localhost:7007/ in your browser.
 
 in default, ~/.tickets.db is created to save tickets data.
 
