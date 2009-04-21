@@ -30,6 +30,10 @@ class MainController < Ramaze::Controller
   def index
     Ticket.shake! if Ticket.needs_shaking?
   end
+
+  def track
+    @tickets = Ticket.all(:deleted => true)
+  end
 end
 
 class ConfigController < Ramaze::Controller

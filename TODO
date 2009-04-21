@@ -44,11 +44,11 @@
 = before 0.2.0
 
 - add Tickets::VERSION?
+- edit ticket body
 
 = before 0.1.0
 
-- show deleted tickets (including timeouted ones)
-
++ show deleted tickets (including timeouted ones)
 + automatically move tickets
 
 + Make it installable :-)
