@@ -2,13 +2,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tickets}
-  s.version = "0.0.9"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yutaka HARA"]
   s.date = %q{2009-04-15}
+  s.default_executable = %q{tickets-server}
   s.description = %q{}
   s.email = %q{yutaka.hara+github at gmail.com}
+  s.executables = ["tickets-server"]
   s.extra_rdoc_files = ["README"]
   s.files = ["README", "TODO", "bin/tickets-server", "db/migrate/001_create_tickets.rb", "db/migrate/002_add_deleted_to_tickets.rb", "db/migrate/003_add_timeouted_to_tickets.rb", "dot.tickets.conf.sample", "model/ticket.rb", "public/biwascheme/MIT-LICENSE.txt", "public/biwascheme/README", "public/biwascheme/lib/biwascheme.js", "public/biwascheme/lib/extra_lib.js", "public/biwascheme/lib/io.js", "public/biwascheme/lib/prototype.js", "public/biwascheme/lib/r6rs_lib.js", "public/biwascheme/lib/stackbase.js", "public/biwascheme/lib/webscheme_lib.js", "public/js/builder.js", "public/js/controls.js", "public/js/dragdrop.js", "public/js/effects.js", "public/js/scriptaculous.js", "public/js/slider.js", "public/js/sound.js", "public/js/unittest.js", "public/scm/main.scm", "public/scm/ticket.scm", "tickets.gemspec", "view/index.xhtml"]
   s.homepage = %q{http://github.com/yhara/tickets/}
