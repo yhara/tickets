@@ -1,0 +1,18 @@
+= tickets
+
+Two-dimentional TODO manager.
+
+== Install
+
+  gem install ramaze sequel sqlite3-ruby
+  gem install yhara-tickets
+
+== Execute
+
+  tickets-server -h
+
+in default, ~/.tickets.db is created to save tickets data.
+
+== Configuration
+
+write ~/.tickets.conf (see dot.tickets.conf.sample)
