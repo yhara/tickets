@@ -48,6 +48,7 @@
 
 = before 0.1.0
 
++ fix ticket positions (center=0,0)
 + show deleted tickets (including timeouted ones)
 + automatically move tickets
 
