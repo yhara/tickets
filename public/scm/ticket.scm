@@ -50,7 +50,7 @@
             (js-obj "onEnd" 
                     (js-closure 
                       (lambda (drg) (ticket-moved (js-ref drg "element"))))))
-    (set-position! ticket-div x y)
+    (set-position! ticket-div (+ (/ *width* 2) x) (+ (/ *height* 2) y))
     ticket-div))
 
 ; rename ticket and submit to server

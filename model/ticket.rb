@@ -14,19 +14,14 @@ class Ticket < Sequel::Model(:tickets)
   def self.shake!
     Ticket.each do |ticket|
       pos = ticket.emergency
-      center = Tickets::Config::BOARD_HEIGHT / 2
-      dir = (ticket.importance < center ? 1 : -1)
+      dir = (ticket.importance < 0 ? 1 : -1)
       newpos = pos + Tickets::Config::SHAKE_DISTANCE * dir
-      if newpos > Tickets::Config::BOARD_WIDTH
-        if dir == 1
-          next
-        else
-          newpos = Tickets::Config::BOARD_WIDTH
-        end
+      if newpos > (Tickets::Config::BOARD_WIDTH / 2)
+        newpos = (Tickets::Config::BOARD_WIDTH / 2)
       end
 
       ticket.update(:emergency => newpos) if newpos != pos
-      if newpos < 0
+      if newpos < -(Tickets::Config::BOARD_WIDTH / 2)
         ticket.update(:deleted => true, :timeouted => true)
       end
     end
