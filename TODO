@@ -1,3 +1,11 @@
+= How to release
+
+* (edit TODO)
+* edit VERSION in bin/tickets-server
+* rtask -> update version
+  * build gem test
+  * Then, push it!
+
 = before 1.x.x
 
 - write server tests
@@ -30,7 +38,6 @@
 
 = before 0.4.0
 
-- change orm to datamapper(or ActiveRecord?)
 - implement tags 
   - different color
   - show certain tag only
@@ -38,6 +45,7 @@
 
 = before 0.3.0
 
+- change orm to datamapper(or ActiveRecord?)
 - memorize date when a ticket is created
 - memorize date when a ticket is deleted
 
@@ -45,7 +53,17 @@
 
 - edit ticket body
 
-= before 0.1.0
+= before 0.1.1
+
+- stick to board edge
+
+= before 0.1.0.2
+
+- fix track?
++ fix ticket position when generated
++ fix move position
+
+= 0.1.0.1
 
 + add Tickets::VERSION
 
