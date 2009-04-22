@@ -99,6 +99,11 @@ class TicktesController < Ramaze::Controller
   end
 end
 
+if ARGV.include? '--with-open'
+  ARGV.delete '--with-open'
+  system 'open', "http://localhost:#{Tickets::Config::PORT}"
+end
+
 Dir.chdir(File.expand_path("..", File.dirname(__FILE__)))
 Ramaze.setup do
   option.port = Tickets::Config::PORT
