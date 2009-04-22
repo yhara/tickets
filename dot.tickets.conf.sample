@@ -1,9 +1,10 @@
 #
 # ~/.tickets.conf example
-# 
+#
 module Tickets
   module Config
     DB_PATH = File.expand_path("~/data/.tickets.db")
     PORT = 7000
   end
 end
+# vim: filetype=ruby fileencoding:utf-8
