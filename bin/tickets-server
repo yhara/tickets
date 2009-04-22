@@ -38,6 +38,13 @@ class MainController < Ramaze::Controller
   def track
     @tickets = Ticket.filter(:deleted => true).reverse_order(:id)
   end
+
+  if defined?(Tickets::Config::LANGUAGE) &&
+    Tickets::Config::LANGUAGE == 'ja'
+    action_methods.each do |m|
+      template m, :file => "#{m}.xhtml.ja"
+    end
+  end
 end
 
 class ConfigController < Ramaze::Controller
