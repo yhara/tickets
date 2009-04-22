@@ -18,7 +18,7 @@
   (call-with-values 
     (lambda () (get-position ticket-div))
     (lambda (x y) 
-      (ticket-move (js-ref ticket-div "ticket-id") x y))))
+      (ticket-move (js-ref ticket-div "ticket-id") (- x (/ *width* 2)) (- y (/ *height* 2))))))
 
 ; the ticket-div currently shown
 (define *current-ticket* #f)

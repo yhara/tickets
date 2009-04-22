@@ -17,11 +17,11 @@ module Tickets
     DB_PATH = File.expand_path("~/.tickets.db") unless defined?(DB_PATH)
     PORT = 7007 unless defined?(PORT)
 
-    SHAKE_INTERVAL = 24 # hours
-    SHAKE_DISTANCE = 8  # pixels
+    SHAKE_INTERVAL = 24 unless defined?(SHAKE_INTERVAL) # hours
+    SHAKE_DISTANCE = 8 unless defined?(SHAKE_DISTANCE) # pixels
 
-    BOARD_WIDTH  = 600 # pixels
-    BOARD_HEIGHT = 600 # pixels
+    BOARD_WIDTH  = 600 unless defined?(BOARD_WIDTH) # pixels
+    BOARD_HEIGHT = 600 unless defined?(BOARD_HEIGHT) # pixels
   end
 end
 
