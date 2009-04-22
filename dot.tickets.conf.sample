@@ -8,4 +8,4 @@ module Tickets
     # LANGUAGE = 'ja'
   end
 end
-# vim: filetype=ruby fileencoding:utf-8
+# vim: filetype=ruby fileencoding:utf8
