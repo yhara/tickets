@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <title>tickets</title>
+  <style>
+  div#field{
+     border:1px solid black; float:left; margin:0.5em; padding:0.5em;
+  }
+  div#hand{
+     width: 300px; height: 300px;
+     border:1px solid black; margin:0.5em; padding:0.5em;
+     float: left;
+  }
+  div#hand_header{
+     border-bottom: 1px solid black;
+  }
+  div#hand_control{
+    text-align: right;
+  }
+  div.ticket{
+    width: 100px;
+    border: 1px solid black;
+    padding: 0.3em;
+  }
+  </style>
+</head>
+<body>
+
+<div id="field">
+  <div id="top">Crucial</div>
+  <div id="bottom">Possible</div>
+  <div id="right">Emergent</div>
+  <div id="left">Someday</div>
+  <div id="origin"><a href='#'>*</a></div>
+</div>
+
+<div id="hand">
+  <div id="hand_header">
+    <span id="hand_title"></span>
+    <input type="button" id="hand_title_submit" value="OK" style="display:none;">
+  </div>
+  <div id="hand_control">
+    <a href="#" id="hand_edit">edit</a>
+    <a href="#" id="hand_delete">delete</a>
+  </div>
+  <div id="hand_desc"></div>
+</div>
+
+<div id="bs-console"></div>
+
+<div style="clear:both">
+  <a href="track">View all tickets</a>
+</div>
+
+<script src="biwascheme/lib/biwascheme.js">
+(load "scm/main.scm")
+</script>
+
+</body>
+</html>
