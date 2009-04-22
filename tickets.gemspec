@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yutaka HARA"]
-  s.date = %q{2009-04-15}
+  s.date = %q{2009-04-22}
   s.default_executable = %q{tickets-server}
   s.description = %q{}
   s.email = %q{yutaka.hara+github at gmail.com}
