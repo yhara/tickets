@@ -43,10 +43,13 @@
 
 = before 0.2.0
 
-- add Tickets::VERSION?
 - edit ticket body
 
 = before 0.1.0
+
+- add Tickets::VERSION?
+
++ Make it work with gem
 
 + fix ticket positions (center=0,0)
 + show deleted tickets (including timeouted ones)

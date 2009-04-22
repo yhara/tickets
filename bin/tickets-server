@@ -95,6 +95,7 @@ class TicktesController < Ramaze::Controller
   end
 end
 
+Dir.chdir(File.expand_path("..", File.dirname(__FILE__)))
 Ramaze.setup do
   option.port = Tickets::Config::PORT
 end
