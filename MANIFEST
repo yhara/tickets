@@ -1,4 +1,4 @@
-README
+README.rdoc
 TODO
 bin/tickets-server
 db/migrate/001_create_tickets.rb
