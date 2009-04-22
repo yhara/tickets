@@ -5,7 +5,7 @@
 (define (ticket-create)
   (let1 result (read-from-string (http-request "tickets/create"))
     (if (eq? (car result) 'id)
-      (ticket-new! (cdr result) "" (/ *width* 2) (/ *height* 2))
+      (ticket-new! (cdr result) "" 0 0)
       (show-error "error: failed to create new ticket"))))
 
 (define (ticket-move id x y)
