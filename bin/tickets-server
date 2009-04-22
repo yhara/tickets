@@ -3,6 +3,10 @@ require 'rubygems'
 require 'ramaze'
 require 'ramaze/setup'
 
+module Tickets
+  VERSION = "0.1.0"
+end
+
 # load config
 conf_path = File.expand_path("~/.tickets.conf")
 load conf_path if File.exist?(conf_path)
