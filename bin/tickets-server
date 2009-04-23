@@ -38,6 +38,10 @@ class MainController < Ramaze::Controller
   def track
     @tickets = Ticket.filter(:deleted => true).reverse_order(:id)
   end
+
+  def test
+    render :index
+  end
 end
 
 class ConfigController < Ramaze::Controller
