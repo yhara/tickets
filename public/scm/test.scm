@@ -2,6 +2,7 @@
 ;; test.scm
 ;;
 
+; "raise" function; should be implemented by BiwaScheme side, in the future.
 (define *escape* (call/cc (lambda (x) x)))
 (define (raise msg)
   (print "ERROR: " msg)
@@ -9,7 +10,7 @@
 
 ;;; sspec
 
-; (expect expr)
+; (expect expr) -> checks result is a true value
 ; (expect expr is value) -> checks (eq? result value)
 (define-macro (expect . args)
   (case (length args)
