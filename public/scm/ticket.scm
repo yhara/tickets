@@ -5,7 +5,9 @@
 (define (ticket-create)
   (let1 result (read-from-string (http-request "tickets/create"))
     (if (eq? (car result) 'id)
-      (ticket-new! (cdr result) "" 0 0)
+      (begin
+        (ticket-new! (cdr result) "" 0 0)
+        (on-ticket-rename))
       (show-error "error: failed to create new ticket"))))
 
 (define (ticket-move id x y)
@@ -72,6 +74,7 @@
       (element-show! ok-button)
       (element-update! ($ "hand_title") 
                        (rename-form (get-content ($ "hand_title"))))
+      (js-invoke ($ "rename_text") "focus")
       (wait-for ok-button "click")
       (ticket-rename (get-content ($ "rename_text")))
       (element-hide! ok-button))))
