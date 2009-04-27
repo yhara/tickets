@@ -45,3 +45,11 @@
 (expect (= 1 1))
 (define x 1)
 (expect x is 2)
+
+; get ticket divs
+(define (ticket-divs)
+  (js-call (js-eval "$$") "div.ticket"))
+
+; when creating a ticket
+(js-invoke ($ "origin") "fire" "bs:click")
+(expect (vector-length (ticket-divs)) is 2)
