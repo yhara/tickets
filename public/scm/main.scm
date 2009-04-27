@@ -51,13 +51,22 @@
 (set-position! ($ "left")   0       (/ *height* 2))
 (set-position! ($ "origin") (/ *width* 2) (/ *height* 2))
 
+(define original-add-handler! add-handler!)
+(define (testable-add-handler! elem event-type proc)
+  (let1 custom-type (string-append "bs:" event-type)
+    (original-add-handler! elem custom-type proc)
+    (original-add-handler! elem event-type
+      (lambda (e) (js-invoke elem "fire" custom-type)))))
+
+(when TEST
+  (set! add-handler! testable-add-handler!))
+
 (add-handler! ($ "origin") "click" ticket-create)
 
 (add-handler! ($ "hand_title") "click" on-ticket-rename)
 (add-handler! ($ "hand_delete") "click" on-ticket-delete)
 
 (define show-error print)
-
 
 (for-each (lambda (vals) (apply ticket-new! vals))
           (read-from-string (http-request "tickets/list")))

@@ -54,10 +54,16 @@
 </div>
 
 <script src="biwascheme/lib/biwascheme.js">
-(when (regexp-exec "test" (js-eval "window.location.pathname"))
-  (load "scm/test.scm"))
-  
-(load "scm/main.scm")
+
+(define TEST #f)
+
+(if (regexp-exec "test" (js-eval "window.location.pathname"))
+  (begin
+    (set! TEST #t)
+    (load "scm/main.scm")
+    (load "scm/test.scm"))
+  (begin
+    (load "scm/main.scm")))
 </script>
 
 </body>
