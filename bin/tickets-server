@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
 require 'rubygems'
+gem 'ramaze', '= 2009.03'
 require 'ramaze'
 require 'ramaze/setup'
 
 module Tickets
-  VERSION = "0.1.0.2"
+  VERSION = "0.1.0.3"
 end
 
 # load config

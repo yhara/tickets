@@ -2,13 +2,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tickets}
-  s.version = "0.1.0.2"
+  s.version = "0.1.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yutaka HARA"]
-  s.date = %q{2009-04-22}
+  s.date = %q{2009-05-12}
   s.default_executable = %q{tickets-server}
-  s.description = %q{}
+  s.description = %q{Two-dimentional TODO manager}
   s.email = %q{yutaka.hara+github at gmail.com}
   s.executables = ["tickets-server"]
   s.extra_rdoc_files = ["README.rdoc"]
@@ -25,16 +25,16 @@ Gem::Specification.new do |s|
     s.specification_version = 2
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<ramaze>, [">= 0"])
+      s.add_runtime_dependency(%q<ramaze>, ["= 2009.03"])
       s.add_runtime_dependency(%q<sequel>, [">= 0"])
       s.add_runtime_dependency(%q<sqlite3-ruby>, [">= 0"])
     else
-      s.add_dependency(%q<ramaze>, [">= 0"])
+      s.add_dependency(%q<ramaze>, ["= 2009.03"])
       s.add_dependency(%q<sequel>, [">= 0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     end
   else
-    s.add_dependency(%q<ramaze>, [">= 0"])
+    s.add_dependency(%q<ramaze>, ["= 2009.03"])
     s.add_dependency(%q<sequel>, [">= 0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
   end
