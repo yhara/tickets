@@ -1,11 +1,10 @@
 #!/usr/bin/env ruby
 require 'rubygems'
-gem 'ramaze', '= 2009.03'
 require 'ramaze'
 require 'ramaze/setup'
 
 module Tickets
-  VERSION = "0.1.0.3"
+  VERSION = "0.1.0.3rc"
 end
 
 # load config
@@ -32,6 +31,9 @@ require 'model/ticket'
 
 # controllers
 class MainController < Ramaze::Controller
+  map '/'
+  engine :Etanni
+
   def index
     Ticket.shake! if Ticket.needs_shaking?
   end
@@ -43,7 +45,6 @@ end
 
 class ConfigController < Ramaze::Controller
   map '/config'
-  deny_layout :all
 
   def board_size
     "(xy . (#{Tickets::Config::BOARD_WIDTH} . #{Tickets::Config::BOARD_HEIGHT}))"
@@ -52,7 +53,6 @@ end
 
 class TicktesController < Ramaze::Controller
   map '/tickets'
-  deny_layout :all
 
   def create
     ticket = Ticket.new
@@ -101,7 +101,5 @@ class TicktesController < Ramaze::Controller
 end
 
 Dir.chdir(File.expand_path("..", File.dirname(__FILE__)))
-Ramaze.setup do
-  option.port = Tickets::Config::PORT
-end
-Ramaze.start
+Ramaze.start :port => Tickets::Config::PORT,
+             :root => Dir.pwd
